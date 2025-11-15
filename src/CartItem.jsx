@@ -13,7 +13,7 @@ const CartItem = ({ onContinueShopping }) => {
 
     cart.forEach((item) =>{
         const itemCost = parseFloat(item.cost.substring(1));
-        total = itemCost * item.quantity;
+        total += itemCost * item.quantity;
     });
 
     return total;
@@ -21,6 +21,7 @@ const CartItem = ({ onContinueShopping }) => {
 
   const handleContinueShopping = (e) => {
     alert('Functionality to be added for future reference');
+    onContinueShopping();
   };
 
 
@@ -30,7 +31,12 @@ const CartItem = ({ onContinueShopping }) => {
   };
 
   const handleDecrement = (item) => {
-    dispatch(updateQuantity({ name: item.name, quantity: item.quantity -1}));
+    if (item.quantity > 1){
+        dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }));
+    } else {
+        dispatch(removeItem(item));
+    }
+    
    
   };
 

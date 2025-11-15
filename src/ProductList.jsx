@@ -262,6 +262,7 @@ function ProductList({ onHomeClick }) {
         dispatch(addItem(product));
 
         setAddedToCart((prevState) => ({
+            ...prevState,
             [product.name]: true,
         }
         ));
