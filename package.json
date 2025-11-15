@@ -2,7 +2,7 @@
   "name": "shoppingreact",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://kalana-03.github.io/e-plantShopping",
+  "homepage": "https://kalana-03.github.io/shoppingreact",
   "type": "module",
   "scripts": {
     "dev": "vite",
