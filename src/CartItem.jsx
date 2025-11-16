@@ -25,9 +25,10 @@ const CartItem = ({ onContinueShopping }) => {
 
 
   const handleIncrement = (item) => {
-   dispatch(
-      updateQuantity({ name: item.name, quantity: item.quantity + 1 })
-    );
+   dispatch(updateQuantity({ 
+      name: item.name, 
+      quantity: item.quantity + 1 
+    }));
   };
 
   const handleDecrement = (item) => {
@@ -52,9 +53,7 @@ const CartItem = ({ onContinueShopping }) => {
     return (price * item.quantity).toFixed(2);
   };
 
-  const handleCheckout = () => {
-    alert('Coming Soon!');             
-  };
+ 
 
   return (
     <div className="cart-container">
