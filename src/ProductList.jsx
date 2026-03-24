@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './ProductList.css'
 import CartItem from './CartItem';
 import { addItem } from './CartSlice';
@@ -223,14 +223,16 @@ function ProductList({ onHomeClick }) {
         padding: '15px',
         display: 'flex',
         justifyContent: 'space-between',
-        alignIems: 'center',
+        alignItems: 'center',
         fontSize: '20px',
     }
     const styleObjUl = {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        width: '1100px',
+        width: 'min(1100px, 100%)',
+        paddingRight: '12px',
+        paddingLeft: '12px',
     }
     const styleA = {
         color: 'white',
@@ -282,22 +284,22 @@ function ProductList({ onHomeClick }) {
                     </div>
 
                 </div>
-                <div style={styleObjUl}>
+                <div className="navbar-actions" style={styleObjUl}>
                     <div> <a href="#" onClick={(e) => handlePlantsClick(e)} style={styleA}>Plants</a></div>
-                    <div> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
+                    <div className="cart-nav-item"> <a href="#" onClick={(e) => handleCartClick(e)} style={styleA}>
                         <h1 className='cart'><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" id="IconChangeColor" height="68" width="68"><rect width="156" height="156" fill="none"></rect><circle cx="80" cy="216" r="12"></circle><circle cx="184" cy="216" r="12"></circle><path d="M42.3,72H221.7l-26.4,92.4A15.9,15.9,0,0,1,179.9,176H84.1a15.9,15.9,0,0,1-15.4-11.6L32.5,37.8A8,8,0,0,0,24.8,32H8" fill="none" stroke="#faf9f9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" id="mainIconPathAttribute"></path></svg>
                         {cart.numOfItems > 0 && (
                         <span
                         style={{
                             position: 'absolute',
-                            top: '-8px',
-                            right: '-8px',
+                            top: '-5px',
+                            right: '-5px',
                             background: '#ff4444',
                             color: 'white',
                             borderRadius: '50%',
-                            width: '20px',
-                            height: '20px',
-                            fontSize: '12px',
+                            width: '18px',
+                            height: '18px',
+                            fontSize: '11px',
                             display: 'flex',
                             alignItems: 'center',
                             justifyContent: 'center',
@@ -314,7 +316,7 @@ function ProductList({ onHomeClick }) {
                 <div className="product-grid">
                     {plantsArray.map((category, index) => ( 
                         <div key={index}> 
-                        <h1>
+                        <h1 className="category-title">
                             <div>{category.category}</div> 
                         </h1>
                         <div className="product-list"> 
@@ -329,7 +331,7 @@ function ProductList({ onHomeClick }) {
           
                                     <div className="product-description">{plant.description}</div> 
                                     <div className="product-cost">${plant.cost}</div> 
-                                    <button className="product-button" onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]} >{addedToCart[plant.name] ? 'Added' : 'Add to Cart'}</button>
+                                    <button className="product-button" onClick={() => handleAddToCart(plant)} disabled={addedToCart[plant.name]} aria-label={addedToCart[plant.name] ? 'Added to cart' : `Add ${plant.name} to cart`} >{addedToCart[plant.name] ? '✓' : '+'}</button>
                                 </div>
       ))}
     </div>
